@@ -10,11 +10,11 @@ import XCTest
 
 class PokeAPIServiceTests: XCTestCase {
     var sut: PokemonGateway!
-    var mockNetworkService: NetworkServiceMock!
+    var mockNetworkService: MockNetworkService!
     
     override func setUp() {
         super.setUp()
-        mockNetworkService = NetworkServiceMock()
+        mockNetworkService = MockNetworkService()
         sut = PokemonGatewayImpl(networkService: mockNetworkService)
     }
     

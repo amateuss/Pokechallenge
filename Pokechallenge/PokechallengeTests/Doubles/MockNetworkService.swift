@@ -9,7 +9,7 @@ import Foundation
 @testable import Pokechallenge
 
 // MARK: - Mock Network Service
-class NetworkServiceMock: NetworkService {
+class MockNetworkService: NetworkService {
     var requestDataCalled = false
     var requestURL: URL?
     var result: Result<Data, Error>?

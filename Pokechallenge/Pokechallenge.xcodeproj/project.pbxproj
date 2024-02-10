@@ -13,14 +13,14 @@
 		0E700EAD2B77F4940087F990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E700EAB2B77F4940087F990 /* Main.storyboard */; };
 		0E700EAF2B77F4950087F990 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E700EAE2B77F4950087F990 /* Assets.xcassets */; };
 		0E700EB22B77F4950087F990 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E700EB02B77F4950087F990 /* LaunchScreen.storyboard */; };
-		0E700EBD2B77F4950087F990 /* PokechallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EBC2B77F4950087F990 /* PokechallengeTests.swift */; };
 		0E700EC72B77F4950087F990 /* PokechallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EC62B77F4950087F990 /* PokechallengeUITests.swift */; };
 		0E700EC92B77F4950087F990 /* PokechallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EC82B77F4950087F990 /* PokechallengeUITestsLaunchTests.swift */; };
 		0E700ED82B77F5BB0087F990 /* LoggerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700ED72B77F5BB0087F990 /* LoggerSystem.swift */; };
 		0E700EDF2B77F7130087F990 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EDE2B77F7130087F990 /* NetworkService.swift */; };
-		0E700EE32B7803090087F990 /* NetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EE22B7803090087F990 /* NetworkServiceMock.swift */; };
+		0E700EE32B7803090087F990 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EE22B7803090087F990 /* MockNetworkService.swift */; };
 		0E700EEA2B7804820087F990 /* PokemonGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EE92B7804820087F990 /* PokemonGateway.swift */; };
 		0E700EEC2B7804AF0087F990 /* PokemonGatewayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EEB2B7804AF0087F990 /* PokemonGatewayTests.swift */; };
+		0E700EF62B780ADB0087F990 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EF52B780ADB0087F990 /* NetworkServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,15 +50,15 @@
 		0E700EB12B77F4950087F990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E700EB32B77F4950087F990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E700EB82B77F4950087F990 /* PokechallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokechallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E700EBC2B77F4950087F990 /* PokechallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokechallengeTests.swift; sourceTree = "<group>"; };
 		0E700EC22B77F4950087F990 /* PokechallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokechallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E700EC62B77F4950087F990 /* PokechallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokechallengeUITests.swift; sourceTree = "<group>"; };
 		0E700EC82B77F4950087F990 /* PokechallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokechallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0E700ED72B77F5BB0087F990 /* LoggerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerSystem.swift; sourceTree = "<group>"; };
 		0E700EDE2B77F7130087F990 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		0E700EE22B7803090087F990 /* NetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceMock.swift; sourceTree = "<group>"; };
+		0E700EE22B7803090087F990 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		0E700EE92B7804820087F990 /* PokemonGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonGateway.swift; sourceTree = "<group>"; };
 		0E700EEB2B7804AF0087F990 /* PokemonGatewayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonGatewayTests.swift; sourceTree = "<group>"; };
+		0E700EF52B780ADB0087F990 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				0E700EE12B7802F70087F990 /* Doubles */,
+				0E700EF12B780AB90087F990 /* NetworkService */,
 				0E700EDA2B77F6980087F990 /* Data */,
-				0E700EBC2B77F4950087F990 /* PokechallengeTests.swift */,
 			);
 			path = PokechallengeTests;
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 		0E700EE12B7802F70087F990 /* Doubles */ = {
 			isa = PBXGroup;
 			children = (
-				0E700EE22B7803090087F990 /* NetworkServiceMock.swift */,
+				0E700EE22B7803090087F990 /* MockNetworkService.swift */,
 			);
 			path = Doubles;
 			sourceTree = "<group>";
@@ -212,6 +212,22 @@
 				0E700EE92B7804820087F990 /* PokemonGateway.swift */,
 			);
 			path = PokeData;
+			sourceTree = "<group>";
+		};
+		0E700EF12B780AB90087F990 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				0E700EF42B780AD00087F990 /* Service */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		0E700EF42B780AD00087F990 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0E700EF52B780ADB0087F990 /* NetworkServiceTests.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,9 +374,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E700EE32B7803090087F990 /* NetworkServiceMock.swift in Sources */,
+				0E700EE32B7803090087F990 /* MockNetworkService.swift in Sources */,
 				0E700EEC2B7804AF0087F990 /* PokemonGatewayTests.swift in Sources */,
-				0E700EBD2B77F4950087F990 /* PokechallengeTests.swift in Sources */,
+				0E700EF62B780ADB0087F990 /* NetworkServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
