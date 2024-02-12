@@ -56,25 +56,4 @@ class PokemonGatewayImpl: PokemonGateway {
     }
 }
 
-// MARK: - Models
-struct PokemonListResponse: Codable {
-    let results: [PokemonListItem]
-}
 
-struct PokemonListItem: Codable {
-    let name: String
-    let url: String
-}
-
-struct Pokemon: Codable {
-    let name: String
-    let abilities: [Ability]
-}
-
-struct Ability: Codable {
-    let ability: AbilityInfo
-}
-
-struct AbilityInfo: Codable {
-    let name: String
-}

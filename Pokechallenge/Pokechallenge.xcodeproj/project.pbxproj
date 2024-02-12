@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E6FC9FD2B7A20B200FF9CFB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6FC9FC2B7A20B200FF9CFB /* NetworkService.swift */; };
+		0E6FCA002B7A233500FF9CFB /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6FC9FF2B7A233500FF9CFB /* Pokemon.swift */; };
 		0E700EA62B77F4940087F990 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EA52B77F4940087F990 /* AppDelegate.swift */; };
 		0E700EA82B77F4940087F990 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EA72B77F4940087F990 /* SceneDelegate.swift */; };
 		0E700EAA2B77F4940087F990 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EA92B77F4940087F990 /* ViewController.swift */; };
@@ -16,7 +18,7 @@
 		0E700EC72B77F4950087F990 /* PokechallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EC62B77F4950087F990 /* PokechallengeUITests.swift */; };
 		0E700EC92B77F4950087F990 /* PokechallengeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EC82B77F4950087F990 /* PokechallengeUITestsLaunchTests.swift */; };
 		0E700ED82B77F5BB0087F990 /* LoggerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700ED72B77F5BB0087F990 /* LoggerSystem.swift */; };
-		0E700EDF2B77F7130087F990 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EDE2B77F7130087F990 /* NetworkService.swift */; };
+		0E700EDF2B77F7130087F990 /* NetworkServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EDE2B77F7130087F990 /* NetworkServiceImpl.swift */; };
 		0E700EE32B7803090087F990 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EE22B7803090087F990 /* MockNetworkService.swift */; };
 		0E700EEA2B7804820087F990 /* PokemonGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EE92B7804820087F990 /* PokemonGateway.swift */; };
 		0E700EEC2B7804AF0087F990 /* PokemonGatewayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E700EEB2B7804AF0087F990 /* PokemonGatewayTests.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E6FC9FC2B7A20B200FF9CFB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		0E6FC9FF2B7A233500FF9CFB /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		0E700EA22B77F4940087F990 /* Pokechallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokechallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E700EA52B77F4940087F990 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E700EA72B77F4940087F990 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,7 +58,7 @@
 		0E700EC62B77F4950087F990 /* PokechallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokechallengeUITests.swift; sourceTree = "<group>"; };
 		0E700EC82B77F4950087F990 /* PokechallengeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokechallengeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0E700ED72B77F5BB0087F990 /* LoggerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerSystem.swift; sourceTree = "<group>"; };
-		0E700EDE2B77F7130087F990 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		0E700EDE2B77F7130087F990 /* NetworkServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceImpl.swift; sourceTree = "<group>"; };
 		0E700EE22B7803090087F990 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
 		0E700EE92B7804820087F990 /* PokemonGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonGateway.swift; sourceTree = "<group>"; };
 		0E700EEB2B7804AF0087F990 /* PokemonGatewayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonGatewayTests.swift; sourceTree = "<group>"; };
@@ -86,6 +90,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E6FC9FA2B7A209800FF9CFB /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0E6FC9FC2B7A20B200FF9CFB /* NetworkService.swift */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
+		0E6FCA012B7A234A00FF9CFB /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				0E6FC9FF2B7A233500FF9CFB /* Pokemon.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		0E700E992B77F4940087F990 = {
 			isa = PBXGroup;
 			children = (
@@ -177,7 +197,7 @@
 		0E700EDB2B77F6BE0087F990 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				0E700EDE2B77F7130087F990 /* NetworkService.swift */,
+				0E700EDE2B77F7130087F990 /* NetworkServiceImpl.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -201,6 +221,7 @@
 		0E700EE72B78044A0087F990 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0E6FCA012B7A234A00FF9CFB /* Entities */,
 				0E700EE82B7804510087F990 /* PokeData */,
 			);
 			path = Data;
@@ -209,6 +230,7 @@
 		0E700EE82B7804510087F990 /* PokeData */ = {
 			isa = PBXGroup;
 			children = (
+				0E6FC9FA2B7A209800FF9CFB /* protocols */,
 				0E700EE92B7804820087F990 /* PokemonGateway.swift */,
 			);
 			path = PokeData;
@@ -361,12 +383,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E700EDF2B77F7130087F990 /* NetworkService.swift in Sources */,
+				0E700EDF2B77F7130087F990 /* NetworkServiceImpl.swift in Sources */,
 				0E700EAA2B77F4940087F990 /* ViewController.swift in Sources */,
 				0E700EA62B77F4940087F990 /* AppDelegate.swift in Sources */,
 				0E700ED82B77F5BB0087F990 /* LoggerSystem.swift in Sources */,
+				0E6FCA002B7A233500FF9CFB /* Pokemon.swift in Sources */,
 				0E700EEA2B7804820087F990 /* PokemonGateway.swift in Sources */,
 				0E700EA82B77F4940087F990 /* SceneDelegate.swift in Sources */,
+				0E6FC9FD2B7A20B200FF9CFB /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

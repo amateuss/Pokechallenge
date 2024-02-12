@@ -7,11 +7,6 @@
 
 import Foundation
 
-protocol NetworkService {
-    typealias CompletionHandler = (Result<Data, Error>) -> Void
-    func requestData(from url: URL, completion: @escaping CompletionHandler)
-}
-
 class NetworkServiceImpl: NetworkService {
     private let session: URLSession
     private let loggerSystem: LoggerSystem
@@ -40,7 +35,7 @@ class NetworkServiceImpl: NetworkService {
                 completion(.failure(NetworkError.noData))
                 return
             }
-            
+            self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: "\(data)", error: nil)
             completion(.success(data))
         }
         task.resume()
