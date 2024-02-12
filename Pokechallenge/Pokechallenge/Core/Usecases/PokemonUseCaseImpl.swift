@@ -51,6 +51,9 @@ final class PokemonUseCaseImpl: PokemonUseCase {
                 let pokemonModel = PokemonModel(name: pokemonEntity.name, 
                                                 height: pokemonEntity.height,
                                                 weight: pokemonEntity.weight)
+                
+                self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: "Fetch Pokemon Sucsess: \n \(pokemonModel)", error: nil)
+                
                 completion(.success(pokemonModel))
             case .failure(let error):
                 self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: nil, error: PokemonError.operationFailed.description)
