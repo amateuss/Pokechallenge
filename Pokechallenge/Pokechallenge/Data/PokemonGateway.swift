@@ -9,6 +9,6 @@ import Foundation
 
 protocol PokemonGateway {
     typealias CompletionHandler<T: Decodable> = (Result<T, Error>) -> Void
-    func fetchAllPokemon(completion: @escaping CompletionHandler<[PokemonListItem]>)
-    func fetchPokemon(name: String, completion: @escaping CompletionHandler<Pokemon>)
+    func fetchAllPokemon(completion: @escaping CompletionHandler<[PokemonListItemEntity]>)
+    func fetchPokemon(name: String, completion: @escaping CompletionHandler<PokemonEntity>)
 }

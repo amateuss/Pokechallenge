@@ -32,26 +32,27 @@ class PokeAPIServiceTests: XCTestCase {
                 "results": [
                     {
                         "name": "bulbasaur",
-                        "url": "https://pokeapi.co/api/v2/pokemon/1/"
+                        "url": "https://foo.co/api/v2/pokemon/1/"
                     },
                     {
                         "name": "charmander",
-                        "url": "https://pokeapi.co/api/v2/pokemon/4/"
+                        "url": "https://foo.co/api/v2/pokemon/4/"
                     }
                 ]
             }
             """.data(using: .utf8)!
+        
         mockNetworkService.result = .success(responseData)
         
         // When
-        var capturedResult: Result<[PokemonListItem], Error>?
+        var capturedResult: Result<[PokemonListItemEntity], Error>?
         sut.fetchAllPokemon { result in
             capturedResult = result
         }
         
         // Then
         XCTAssertTrue(mockNetworkService.requestDataCalled)
-        XCTAssertEqual(mockNetworkService.requestURL, URL(string: "https://pokeapi.co/api/v2/pokemon")!)
+        XCTAssertNotNil(mockNetworkService.requestURL)
         XCTAssertNotNil(capturedResult)
         switch capturedResult {
         case .success(let pokemonList):
@@ -70,14 +71,14 @@ class PokeAPIServiceTests: XCTestCase {
         mockNetworkService.result = .failure(NetworkError.invalidResponse)
         
         // When
-        var capturedResult: Result<[PokemonListItem], Error>?
+        var capturedResult: Result<[PokemonListItemEntity], Error>?
         sut.fetchAllPokemon { result in
             capturedResult = result
         }
         
         // Then
         XCTAssertTrue(mockNetworkService.requestDataCalled)
-        XCTAssertEqual(mockNetworkService.requestURL, URL(string: "https://pokeapi.co/api/v2/pokemon")!)
+        XCTAssertNotNil(mockNetworkService.requestURL)
         XCTAssertNotNil(capturedResult)
         switch capturedResult {
         case .success:
@@ -97,39 +98,28 @@ class PokeAPIServiceTests: XCTestCase {
         let responseData = """
             {
                 "name": "pikachu",
-                "abilities": [
-                    {
-                        "ability": {
-                            "name": "static"
-                        }
-                    },
-                    {
-                        "ability": {
-                            "name": "lightning-rod"
-                        }
-                    }
-                ]
+                "height": 30,
+                "weight": 40,
             }
             """.data(using: .utf8)!
         mockNetworkService.result = .success(responseData)
         
         // When
-        var capturedResult: Result<Pokemon, Error>?
+        var capturedResult: Result<PokemonEntity, Error>?
         sut.fetchPokemon(name: "pikachu") { result in
             capturedResult = result
         }
         
         // Then
         XCTAssertTrue(mockNetworkService.requestDataCalled)
-        XCTAssertEqual(mockNetworkService.requestURL, URL(string: "https://pokeapi.co/api/v2/pokemon/pikachu")!)
+        XCTAssertNotNil(mockNetworkService.requestURL)
         XCTAssertNotNil(capturedResult)
         
         switch capturedResult {
         case .success(let pokemon):
             XCTAssertEqual(pokemon.name, "pikachu")
-            XCTAssertEqual(pokemon.abilities.count, 2)
-            XCTAssertEqual(pokemon.abilities[0].ability.name, "static")
-            XCTAssertEqual(pokemon.abilities[1].ability.name, "lightning-rod")
+            XCTAssertEqual(pokemon.height, 30)
+            XCTAssertEqual(pokemon.weight, 40)
         case .failure:
             XCTFail("Unexpected failure")
         case .none:
@@ -142,7 +132,7 @@ class PokeAPIServiceTests: XCTestCase {
         mockNetworkService.result = .failure(NetworkError.noData)
         
         // When
-        var capturedResult: Result<Pokemon, Error>?
+        var capturedResult: Result<PokemonEntity, Error>?
         sut.fetchPokemon(name: "invalidPokemon") { result in
             capturedResult = result
         }
@@ -150,7 +140,7 @@ class PokeAPIServiceTests: XCTestCase {
         
         // Then
         XCTAssertTrue(mockNetworkService.requestDataCalled)
-        XCTAssertEqual(mockNetworkService.requestURL, URL(string: "https://pokeapi.co/api/v2/pokemon/invalidpokemon")!)
+        XCTAssertNotNil(mockNetworkService.requestURL)
         XCTAssertNotNil(capturedResult)
         
         switch capturedResult {

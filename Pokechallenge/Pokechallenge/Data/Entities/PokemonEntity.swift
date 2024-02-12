@@ -8,16 +8,16 @@
 import Foundation
 
 // MARK: - Entities
-struct PokemonListResponse: Codable {
-    let results: [PokemonListItem]
+struct PokemonListResponseEntity: Codable {
+    let results: [PokemonListItemEntity]
 }
 
-struct PokemonListItem: Codable {
+struct PokemonListItemEntity: Codable {
     let name: String
     let url: String
 }
 
-struct Pokemon: Codable {
+struct PokemonEntity: Codable {
     let name: String
     let height: Int
     let weight: Int

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PokemonGatewayImpl: PokemonGateway {
+final class PokemonGatewayImpl: PokemonGateway {
     private let networkService: NetworkService
     private let loggerSystem: LoggerSystem
     
@@ -18,25 +18,26 @@ class PokemonGatewayImpl: PokemonGateway {
         self.loggerSystem = loggerSystem
     }
     
-    func fetchAllPokemon(completion: @escaping (Result<[PokemonListItem], Error>) -> Void) {
+    func fetchAllPokemon(completion: @escaping (Result<[PokemonListItemEntity], Error>) -> Void) {
         networkService.requestData(from: baseURL) { result in
             switch result {
             case .success(let data):
                 do {
-                    let pokemonListResponse = try JSONDecoder().decode(PokemonListResponse.self, from: data)
-                    
+                    let pokemonListResponse = try JSONDecoder().decode(PokemonListResponseEntity.self, from: data)
+                    self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: "Fetch Pokemon Sucsess: \n \(pokemonListResponse)", error: nil)
                     completion(.success(pokemonListResponse.results))
                 } catch {
+                    self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: nil, error: PokemonGatewayError.decodingError.description)
                     completion(.failure(error))
                 }
             case .failure(let error):
-                
+                self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: nil, error: PokemonGatewayError.operationFailed.description)
                 completion(.failure(error))
             }
         }
     }
     
-    func fetchPokemon(name: String, completion: @escaping (Result<Pokemon, Error>) -> Void) {
+    func fetchPokemon(name: String, completion: @escaping (Result<PokemonEntity, Error>) -> Void) {
         let pokemonURL = baseURL.appendingPathComponent(name.lowercased())
 
         networkService.requestData(from: pokemonURL) { result in
@@ -45,7 +46,7 @@ class PokemonGatewayImpl: PokemonGateway {
                 do {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let pokemon = try decoder.decode(Pokemon.self, from: data)
+                    let pokemon = try decoder.decode(PokemonEntity.self, from: data)
                     
                     self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: "Fetch Pokemon Sucsess: \n \(pokemon)", error: nil)
                     
