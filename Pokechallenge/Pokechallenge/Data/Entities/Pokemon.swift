@@ -19,13 +19,8 @@ struct PokemonListItem: Codable {
 
 struct Pokemon: Codable {
     let name: String
-    let abilities: [Ability]
+    let height: Int
+    let weight: Int
 }
 
-struct Ability: Codable {
-    let ability: AbilityInfo
-}
 
-struct AbilityInfo: Codable {
-    let name: String
-}

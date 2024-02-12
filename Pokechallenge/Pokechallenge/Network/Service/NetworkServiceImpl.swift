@@ -25,7 +25,7 @@ class NetworkServiceImpl: NetworkService {
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: nil, error: NetworkError.invalidURL.description)
+                self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: nil, error: NetworkError.invalidResponse.description)
                 completion(.failure(NetworkError.invalidResponse))
                 return
             }

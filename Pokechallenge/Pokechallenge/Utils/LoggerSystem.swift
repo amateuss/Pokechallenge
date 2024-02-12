@@ -23,7 +23,7 @@ final class LoggerSystemImpl: LoggerSystem {
         
         if let error = error {
             print("ERROR:")
-            print("Error Type \(error)")
+            print("\(error)")
         }
         
         print("Where ---> \(info)")
