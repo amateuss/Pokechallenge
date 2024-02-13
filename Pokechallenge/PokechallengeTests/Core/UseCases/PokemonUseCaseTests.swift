@@ -35,7 +35,7 @@ class PokemonUseCaseImplTests: XCTestCase {
         mockPokemonGateway.fetchAllPokemonResult = .success(pokemonListItemEntities)
 
         // When
-        var capturedResult: Result<[PokemonModelListItem], Error>?
+        var capturedResult: Result<[PokemonListItemModel], Error>?
         sut.fetchAllPokemon { result in
             capturedResult = result
         }
@@ -60,7 +60,7 @@ class PokemonUseCaseImplTests: XCTestCase {
         mockPokemonGateway.fetchAllPokemonResult = .failure(PokemonError.operationFailed)
 
         // When
-        var capturedResult: Result<[PokemonModelListItem], Error>?
+        var capturedResult: Result<[PokemonListItemModel], Error>?
         sut.fetchAllPokemon { result in
             capturedResult = result
         }

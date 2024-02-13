@@ -9,7 +9,7 @@ import Foundation
 
 protocol PokemonUseCase {
     typealias CompletionHandler<T: Decodable> = (Result<T, Error>) -> Void
-    func fetchAllPokemon(completion: @escaping CompletionHandler<[PokemonModelListItem]>)
+    func fetchAllPokemon(completion: @escaping CompletionHandler<[PokemonListItemModel]>)
     func fetchPokemon(name: String, completion: @escaping CompletionHandler<PokemonModel>)
 }
 
@@ -22,20 +22,20 @@ final class PokemonUseCaseImpl: PokemonUseCase {
         self.loggerSystem = loggerSystem
     }
     
-    func fetchAllPokemon(completion: @escaping CompletionHandler<[PokemonModelListItem]>) {
+    func fetchAllPokemon(completion: @escaping CompletionHandler<[PokemonListItemModel]>) {
         pokemonGateway.fetchAllPokemon { result in
-            var pokemonModelList: [PokemonModelListItem] = []
+            var pokemonListModel: [PokemonListItemModel] = []
             
             switch result {
             case .success(let pokemonListItemEntity):
                 for entity in pokemonListItemEntity {
-                    let model = PokemonModelListItem(name: entity.name, url: entity.url)
-                    pokemonModelList.append(model)
+                    let model = PokemonListItemModel(name: entity.name, url: entity.url)
+                    pokemonListModel.append(model)
                 }
 
-                self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: "Fetch Pokemon Sucsess: \n \(pokemonModelList)", error: nil)
+                self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: "Fetch Pokemon Sucsess: \n \(pokemonListModel)", error: nil)
                 
-                completion(.success(pokemonModelList))
+                completion(.success(pokemonListModel))
                 
             case .failure(let error):
                 self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: nil, error: PokemonError.operationFailed.description)

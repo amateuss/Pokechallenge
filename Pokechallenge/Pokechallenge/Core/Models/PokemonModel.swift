@@ -7,15 +7,7 @@
 
 import Foundation
 
-//struct PokemonModelList: Codable {
-//    let pokemonModelListItem: [PokemonModelListItem]
-//    
-//    init(pokemonModelListItem: [PokemonModelListItem]) {
-//        self.pokemonModelListItem = pokemonModelListItem
-//    }
-//}
-
-struct PokemonModelListItem: Codable {
+struct PokemonListItemModel: Codable {
     let name: String
     let url: String
 }
