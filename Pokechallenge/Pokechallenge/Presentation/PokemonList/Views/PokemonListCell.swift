@@ -42,7 +42,9 @@ class PokemonListCell: UICollectionViewCell {
     
     func setup(pokemonItem: PokemonListItemViewModel) {
         self.PokemonNameLabel.text = pokemonItem.name
-//        self.pokemonImage.image = UIImage(data: pokemonItem.image)
+        if let imageData = pokemonItem.imageData {
+            self.pokemonImage.image = UIImage(data: imageData)
+        }
     }
     
     private func setupSubviews() {

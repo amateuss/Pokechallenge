@@ -45,7 +45,6 @@ final class PokemonGatewayImpl: PokemonGateway {
             case .success(let data):
                 do {
                     let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let pokemon = try decoder.decode(PokemonEntity.self, from: data)
                     
                     self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: "Fetch Pokemon Sucsess: \n \(pokemon)", error: nil)

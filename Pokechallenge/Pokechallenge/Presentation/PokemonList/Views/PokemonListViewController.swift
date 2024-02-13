@@ -16,7 +16,6 @@ class PokemonListViewController: BaseViewController {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         
-        
         return UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
     }()
     
@@ -65,7 +64,6 @@ class PokemonListViewController: BaseViewController {
         collectionView.register(PokemonListCell.self, forCellWithReuseIdentifier: Constants.cellIdentifier)
 
         if let cvl = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//            cvl.itemSize = isList ? getCellSize() : getCellSizeList()
             cvl.itemSize = getCellSize()
         }
     }
@@ -113,22 +111,25 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellSize = getCellSize()
-
-        let numberOfCells = floor(view.frame.size.width / cellSize.width)
-        let edgeInsets = (view.frame.size.width - (numberOfCells * cellSize.width)) / (numberOfCells + 1)
-
-        return UIEdgeInsets(top: edgeInsets , left: edgeInsets, bottom: edgeInsets*2, right: edgeInsets)
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let pokemonItem = presenter.viewModel?.pokemonListItemViewModel[indexPath.row]
+        if let pokemonItem, pokemonItem.imageData == nil {
+//            if pokemonItem.imageData == nil {
+                
+            presenter.fetchPokemon(by: pokemonItem.name, index: indexPath.row)
+//            }
+        }
+        
     }
-
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-////        return isList ? getCellSize() : getCellSizeList()
-//    }
 }
 
 // MARK: ViewProtocol
 extension PokemonListViewController: ViewProtocol {
+    func updateView(with pokemonItem: PokemonListItemViewModel, indexPath: Int) {
+        collectionView.reloadItems(at: [IndexPath(row: indexPath, section: 0)])
+    }
+    
     
     func showAlertWith(title: String, message: String, actions: NSArray?) {
         showAlert(with: title, message: message, actions: actions)

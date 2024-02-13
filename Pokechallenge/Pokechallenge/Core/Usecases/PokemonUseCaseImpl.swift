@@ -50,7 +50,8 @@ final class PokemonUseCaseImpl: PokemonUseCase {
             case .success(let pokemonEntity):
                 let pokemonModel = PokemonModel(name: pokemonEntity.name, 
                                                 height: pokemonEntity.height,
-                                                weight: pokemonEntity.weight)
+                                                weight: pokemonEntity.weight,
+                                                imageURL: pokemonEntity.sprites.frontDefault)
                 
                 self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: "Fetch Pokemon Sucsess: \n \(pokemonModel)", error: nil)
                 

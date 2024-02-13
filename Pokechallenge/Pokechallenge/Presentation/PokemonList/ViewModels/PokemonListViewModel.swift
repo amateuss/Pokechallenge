@@ -8,7 +8,7 @@
 import Foundation
 
 struct PokemonListViewModel: Codable {
-    let pokemonListItemViewModel: [PokemonListItemViewModel]
+    var pokemonListItemViewModel: [PokemonListItemViewModel]
 
     init(pokemonListItemViewModel: [PokemonListItemViewModel]) {
         self.pokemonListItemViewModel = pokemonListItemViewModel
@@ -17,5 +17,5 @@ struct PokemonListViewModel: Codable {
 
 struct PokemonListItemViewModel: Codable {
     let name: String
-    let url: String
+    var imageData: Data?
 }
