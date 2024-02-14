@@ -7,27 +7,28 @@
 
 import Foundation
 
+enum MessageType: String {
+    case success = "ERROR:"
+    case error = "SUCCESS:"
+    case other = ""
+}
+
 protocol LoggerSystem {
-    func logger(info: String, message: String?, error: String?)
+    func logger(type: MessageType, message: String, info: String?)
 }
 
 final class LoggerSystemImpl: LoggerSystem {
     
-    func logger(info: String, message: String? = nil, error: String? = nil) {
+    func logger(type: MessageType, message: String, info: String?) {
         print("\n - - - - - - - - - - - - - - START - - - - - - - - - - - - - - \n")
-
-        if let message = message {
-            print("Message:")
-            print(message)
-        }
+        print("\(type.rawValue) \n")
+        print(message)
         
-        if let error = error {
-            print("ERROR:")
-            print("\(error)")
+        if let info {
+            print("Where ---> \(info)")
         }
-        
-        print("Where ---> \(info)")
-
         print("\n - - - - - - - - - - - - - - FINISH - - - - - - - - - - - - - - \n")
     }
 }
+
+
