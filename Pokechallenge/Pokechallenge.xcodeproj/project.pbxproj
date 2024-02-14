@@ -406,6 +406,7 @@
 		0EB74F7C2B7BCA7800B4827F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0E7767282B7BF9B800F093FF /* PokemonViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -431,7 +432,6 @@
 			isa = PBXGroup;
 			children = (
 				0EB74F932B7BD33300B4827F /* PokemonListViewModel.swift */,
-				0E7767282B7BF9B800F093FF /* PokemonViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

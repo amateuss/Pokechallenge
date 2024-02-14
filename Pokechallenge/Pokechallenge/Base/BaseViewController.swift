@@ -29,13 +29,15 @@ class BaseViewController: UIViewController {
                 }
             }
         } else {
-            alert.addAction(UIAlertAction(title: (.okAlertAction), style: UIAlertAction.Style.default, handler: nil))
+            alert.addAction(UIAlertAction(title: (Constants.okAlertAction), style: UIAlertAction.Style.default, handler: nil))
         }
 
         self.present(alert, animated: true, completion: nil)
     }
 }
 // MARK: - Constants
-private extension String {
-    static let okAlertAction = "Ok"
+private extension BaseViewController {
+    enum Constants {
+        static let okAlertAction = "Ok"
+    }
 }
