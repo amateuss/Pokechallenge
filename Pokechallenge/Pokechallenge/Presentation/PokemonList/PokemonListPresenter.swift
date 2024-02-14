@@ -7,26 +7,29 @@
 
 import Foundation
 
-protocol PresenterProtocol {
-    var view: ViewProtocol? { get set }
+protocol PokemonListPresenterProtocol {
+    var view: PokemonListViewProtocol? { get set }
+    var router: PokemonListRouter? { get set }
     var viewModel: PokemonListViewModel? { get set }
     func getPokemons()
     func fetchPokemon(by name: String, index: Int)
+    func navigateToViewController(index: Int)
 }
 
-protocol ViewProtocol: AnyObject {
+protocol PokemonListViewProtocol: AnyObject {
     func showAlertWith(title: String, message: String, actions: NSArray?)
     func updateView(with pokemonItem: PokemonListItemViewModel, indexPath: Int)
     func reloadData()
 }
 
-class PokemonListPresenter: PresenterProtocol {
+class PokemonListPresenter: PokemonListPresenterProtocol {
     
     private let loggerSystem: LoggerSystem
     
     private let pokemonUseCase: PokemonUseCase
     var viewModel: PokemonListViewModel?
-    var view: ViewProtocol?
+    weak var view: PokemonListViewProtocol?
+    var router: PokemonListRouter?
     
     init(pokemonUseCase: PokemonUseCase, loggerSystem: LoggerSystem = LoggerSystemImpl()) {
         self.pokemonUseCase = pokemonUseCase
@@ -86,6 +89,7 @@ class PokemonListPresenter: PresenterProtocol {
                 guard var pokemon = self.viewModel?.pokemonListItemViewModel[index] else {
                     return
                 }
+                
                 guard let url = URL(string: pokemonModel.imageURL) else {
                     return
                 }
@@ -104,6 +108,16 @@ class PokemonListPresenter: PresenterProtocol {
             case .failure(let error):
                 self.loggerSystem.logger(type: .error, message: error.localizedDescription, info: "File: \(#fileID):\(#line) --> func: \(#function)")
             }
+        }
+    }
+    
+    func navigateToViewController(index: Int) {
+        if let poke = viewModel?.pokemonListItemViewModel[index] {
+            guard let imageData = poke.imageData else {
+                router?.natigateToPokemonDetails(pokeDTO: PokeDTO(name: poke.name, imageData: nil), usecase: pokemonUseCase)
+                return
+            }
+            router?.natigateToPokemonDetails(pokeDTO: PokeDTO(name: poke.name, imageData: imageData), usecase: self.pokemonUseCase)
         }
     }
 }

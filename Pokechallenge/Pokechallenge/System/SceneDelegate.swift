@@ -17,11 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         
-        let networkService = NetworkServiceImpl()
-        let pokeAPIGateway = PokemonGatewayImpl(networkService: networkService)
-        let pokemonUseCase = PokemonUseCaseImpl(pokemonGateway: pokeAPIGateway)
-        let pokemonListPresenter = PokemonListPresenter(pokemonUseCase: pokemonUseCase)
-        let pokemonListViewController = PokemonListViewController(presenter: pokemonListPresenter)
+//        let networkService = NetworkServiceImpl()
+//        let pokeAPIGateway = PokemonGatewayImpl(networkService: networkService)
+//        let pokemonUseCase = PokemonUseCaseImpl(pokemonGateway: pokeAPIGateway)
+//        let pokemonListPresenter = PokemonListPresenter(pokemonUseCase: pokemonUseCase)
+        let pokemonListViewController = PokemonListAssembly.pokemonListViewController()
         
         window?.rootViewController = UINavigationController(rootViewController: pokemonListViewController)
         window?.makeKeyAndVisible()

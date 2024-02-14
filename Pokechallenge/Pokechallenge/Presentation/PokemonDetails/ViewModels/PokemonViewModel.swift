@@ -11,4 +11,5 @@ struct PokemonViewModel: Codable {
     let name: String
     let height: Int
     let weight: Int
+    var imageData: Data?
 }

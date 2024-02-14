@@ -9,7 +9,7 @@ import UIKit
 
 class PokemonListViewController: BaseViewController {
     // MARK: - Properties
-    private var presenter: PresenterProtocol
+    private var presenter: PokemonListPresenterProtocol
     
     // MARK: - UIViews
     private let collectionView: UICollectionView = {
@@ -19,7 +19,7 @@ class PokemonListViewController: BaseViewController {
         return UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
     }()
     
-    init(presenter: PresenterProtocol) {
+    init(presenter: PokemonListPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -115,17 +115,17 @@ extension PokemonListViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let pokemonItem = presenter.viewModel?.pokemonListItemViewModel[indexPath.row]
         if let pokemonItem, pokemonItem.imageData == nil {
-//            if pokemonItem.imageData == nil {
-                
             presenter.fetchPokemon(by: pokemonItem.name, index: indexPath.row)
-//            }
         }
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.navigateToViewController(index: indexPath.row)
     }
 }
 
 // MARK: ViewProtocol
-extension PokemonListViewController: ViewProtocol {
+extension PokemonListViewController: PokemonListViewProtocol {
     func updateView(with pokemonItem: PokemonListItemViewModel, indexPath: Int) {
         collectionView.reloadItems(at: [IndexPath(row: indexPath, section: 0)])
     }
