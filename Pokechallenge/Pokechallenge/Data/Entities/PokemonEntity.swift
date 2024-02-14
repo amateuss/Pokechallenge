@@ -22,13 +22,13 @@ struct PokemonEntity: Codable {
     let height: Int
     let weight: Int
     let sprites: Sprites
+}
+
+struct Sprites: Codable {
+    let frontDefault: String
     
-    struct Sprites: Codable {
-        let frontDefault: String
-        
-        enum CodingKeys: String, CodingKey {
-            case frontDefault = "front_default"
-        }
+    enum CodingKeys: String, CodingKey {
+        case frontDefault = "front_default"
     }
 }
 

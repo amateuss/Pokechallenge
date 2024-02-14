@@ -57,7 +57,7 @@ class PokemonUseCaseImplTests: XCTestCase {
 
     func testFetchAllPokemon_Failure() {
         // Given
-        mockPokemonGateway.fetchAllPokemonResult = .failure(PokemonError.operationFailed)
+        mockPokemonGateway.fetchAllPokemonResult = .failure(PokemonGatewayError.operationFailed)
 
         // When
         var capturedResult: Result<[PokemonListItemModel], Error>?
@@ -83,7 +83,7 @@ class PokemonUseCaseImplTests: XCTestCase {
 
     func testFetchPokemon_Success() {
         // Given
-        let pokemonEntity = PokemonEntity(name: "pikachu", height: 40, weight: 60)
+        let pokemonEntity = PokemonEntity(name: "pikachu", height: 40, weight: 60, sprites: Sprites(frontDefault: "value"))
         mockPokemonGateway.fetchPokemonResult = .success(pokemonEntity)
 
         // When
@@ -109,7 +109,7 @@ class PokemonUseCaseImplTests: XCTestCase {
 
     func testFetchPokemon_Failure() {
         // Given
-        mockPokemonGateway.fetchPokemonResult = .failure(PokemonError.operationFailed)
+        mockPokemonGateway.fetchPokemonResult = .failure(PokemonGatewayError.operationFailed)
 
         // When
         var capturedResult: Result<PokemonModel, Error>?
