@@ -11,11 +11,12 @@ protocol PokemonDetailsPresenterProtocol {
     var view: PokemonDetailsViewProtocol? { get set }
     var pokeDto: PokeDTO? { get }
     var viewModel: PokemonViewModel? { get set }
-    func fetchPokemon(by name: String)
+    func fetchPokemon()
 }
 
 protocol PokemonDetailsViewProtocol: AnyObject {
     func showAlertWith(title: String, message: String, actions: NSArray?)
+    func reloadData()
 }
 
 class PokemonDetailsPresenter: PokemonDetailsPresenterProtocol {
@@ -33,35 +34,41 @@ class PokemonDetailsPresenter: PokemonDetailsPresenterProtocol {
         self.loggerSystem = loggerSystem
     }
 
-    func fetchPokemon(by name: String) {
-        pokemonUseCase.fetchPokemon(name: name) { result in
-            
-            switch result {
-            case .success(let pokemonModel):
-                var pokemonDetailViewModel = PokemonViewModel(name: pokemonModel.name, height: pokemonModel.height, weight: pokemonModel.weight, imageData: nil)
+    func fetchPokemon() {
+        if let name = pokeDto?.name {
+            pokemonUseCase.fetchPokemon(name: name) { result in
                 
-                if let imageData = self.pokeDto?.imageData {
-                    pokemonDetailViewModel.imageData = imageData
-                }
-                
-                DispatchQueue.main.async {
-                    self.viewModel = pokemonDetailViewModel
-                }
-            case .failure(let error):
-                guard let errorType = error as? PokemonError else {
-                    self.loggerSystem.logger(type: .error, message: error.localizedDescription, info: "File: \(#fileID):\(#line) --> func: \(#function)")
-                    return
-                }
-                
-                switch errorType {
-                case .operationFailed, .decodingError:
-                    DispatchQueue.main.async {
-                        self.view?.showAlertWith(title: Constants.alertTitle, message: Constants.alertMessage, actions: nil)
+                switch result {
+                case .success(let pokemonModel):
+                    var pokemonDetailViewModel = PokemonViewModel(name: pokemonModel.name, height: pokemonModel.height, weight: pokemonModel.weight, imageData: nil)
+                    
+                    if let imageData = self.pokeDto?.imageData {
+                        pokemonDetailViewModel.imageData = imageData
                     }
-                    self.loggerSystem.logger(type: .error, message: errorType.description, info: "File: \(#fileID):\(#line) --> func: \(#function)")
+                    
+                    DispatchQueue.main.async {
+                        self.viewModel = pokemonDetailViewModel
+                        self.view?.reloadData()
+                    }
+                case .failure(let error):
+                    guard let errorType = error as? PokemonError else {
+                        self.loggerSystem.logger(type: .error, message: error.localizedDescription, info: "File: \(#fileID):\(#line) --> func: \(#function)")
+                        return
+                    }
+                    
+                    switch errorType {
+                    case .operationFailed, .decodingError:
+                        DispatchQueue.main.async {
+                            self.view?.showAlertWith(title: Constants.alertTitle, message: Constants.alertMessage, actions: nil)
+                        }
+                        self.loggerSystem.logger(type: .error, message: errorType.description, info: "File: \(#fileID):\(#line) --> func: \(#function)")
+                    }
                 }
             }
+        } else {
+            self.view?.showAlertWith(title: Constants.alertTitle, message: Constants.alertMessage, actions: nil)
         }
+        
     }
 }
 
