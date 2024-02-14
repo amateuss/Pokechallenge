@@ -53,18 +53,26 @@ class PokemonListPresenter: PresenterProtocol {
                     pokemonListItemViewModel.append(viewModel)
                 }
                 
-                self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: "Fetch Pokemon Sucsess: \n \(pokemonListItemViewModel)", error: nil)
-                
+                self.loggerSystem.logger(type: .success, message: "Fetched Pokemon List: \n \(pokemonListItemViewModel)", info: nil)
+
                 DispatchQueue.main.async {
                     self.viewModel = PokemonListViewModel(pokemonListItemViewModel: pokemonListItemViewModel)
                     self.view?.reloadData()
                 }
 
             case .failure(let error):
-                self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: nil, error: PokemonError.operationFailed.description)
                 
-                DispatchQueue.main.async {
-                    self.view?.showAlertWith(title: Constants.alertTitle, message: Constants.alertMessage, actions: nil)
+                guard let errorType = error as? PokemonError else {
+                    self.loggerSystem.logger(type: .error, message: error.localizedDescription, info: "File: \(#fileID):\(#line) --> func: \(#function)")
+                    return
+                }
+                
+                switch errorType {
+                case .operationFailed, .decodingError:
+                    DispatchQueue.main.async {
+                        self.view?.showAlertWith(title: Constants.alertTitle, message: Constants.alertMessage, actions: nil)
+                    }
+                    self.loggerSystem.logger(type: .error, message: errorType.description, info: "File: \(#fileID):\(#line) --> func: \(#function)")
                 }
             }
         }
@@ -93,11 +101,10 @@ class PokemonListPresenter: PresenterProtocol {
                 DispatchQueue.main.async {
                     self.view?.updateView(with: pokemon, indexPath: index)
                 }
-            case .failure(_):
-                self.loggerSystem.logger(info: "File: \(#fileID):\(#line) --> func: \(#function)", message: nil, error: PokemonError.operationFailed.description)
+            case .failure(let error):
+                self.loggerSystem.logger(type: .error, message: error.localizedDescription, info: "File: \(#fileID):\(#line) --> func: \(#function)")
             }
         }
-        
     }
 }
 
